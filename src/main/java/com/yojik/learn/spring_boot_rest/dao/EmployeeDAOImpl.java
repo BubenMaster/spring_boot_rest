@@ -29,33 +29,33 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
         return allEmployees;
     }
-//
-//    public List<String> getDepartments() {
-//        Session session = sessionFactory.getCurrentSession();
-//        List<String> departments = session.createQuery("Select distinct department from Employee",String.class).getResultList();
-//        return departments;
-//    }
-//
-//    @Override
-//    public void saveOrUpdateEmployee(Employee employee) {
-//        Session session = sessionFactory.getCurrentSession();
-//        session.saveOrUpdate(employee);
-//    }
-//
-//    @Override
-//    public Employee getEmployee(int id) {
-//        Session session = sessionFactory.getCurrentSession();
-//        return session.get(Employee.class, id);
-//    }
-//
-//    @Override
-//    public void deleteEmployee(int id) {
-//        Session session = sessionFactory.getCurrentSession();
-////        Employee employee = session.get(Employee.class, id);
-////        session.delete(employee);
-//        Query<?> query= session.createQuery("delete from Employee " +
-//                "where id =:employeeId");
-//        query.setParameter("employeeId", id);
-//        query.executeUpdate();
-//    }
+
+    public List<String> getDepartments() {
+        Session session = entityManager.unwrap(Session.class);
+        List<String> departments = session.createQuery("Select distinct department from Employee",String.class).getResultList();
+        return departments;
+    }
+
+    @Override
+    public void saveOrUpdateEmployee(Employee employee) {
+        Session session = entityManager.unwrap(Session.class);
+        session.saveOrUpdate(employee);
+    }
+
+    @Override
+    public Employee getEmployee(int id) {
+        Session session = entityManager.unwrap(Session.class);
+        return session.get(Employee.class, id);
+    }
+
+    @Override
+    public void deleteEmployee(int id) {
+        Session session = entityManager.unwrap(Session.class);
+//        Employee employee = session.get(Employee.class, id);
+//        session.delete(employee);
+        Query<?> query= session.createQuery("delete from Employee " +
+                "where id =:employeeId");
+        query.setParameter("employeeId", id);
+        query.executeUpdate();
+    }
 }

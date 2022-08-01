@@ -19,34 +19,34 @@ public class MyRestController {
         List<Employee> allEmployees = employeeService.getAllEmployees();
         return allEmployees;
     }
-//
-//    @GetMapping("/employees/{id}")
-//    public Employee getEmployee(@PathVariable int id){
-//        Employee employee = employeeService.getEmployee(id);
-//
+
+    @GetMapping("/employees/{id}")
+    public Employee getEmployee(@PathVariable int id){
+        Employee employee = employeeService.getEmployee(id);
+
 //        if (employee == null) throw new NoSuchEmployeeException("There no Employee with this " +
 //                "ID = " + id + " in database");
-//        return employee;
-//    }
-//
-//    @PostMapping("/employees")
-//    public Employee addNewEmployee(@RequestBody Employee employee){
-//        employeeService.saveOrUpdateEmployee(employee);
-//        return employee;
-//    }
-//
-//    @PutMapping("/employees")
-//    public Employee updateEmployee(@RequestBody Employee employee) {
-//        employeeService.saveOrUpdateEmployee(employee);
-//        return employee;
-//    }
-//
-//    @DeleteMapping("/employees/{id}")
-//    public String deleteEmployee(@PathVariable int id){
-//        if (getEmployee(id) != null) {
-//            employeeService.deleteEmployee(id);
-//        }
-//        return "Employee with id " + id + " was erased";
-//    }
+        return employee;
+    }
+
+    @PostMapping("/employees")
+    public Employee addNewEmployee(@RequestBody Employee employee){
+        employeeService.saveOrUpdateEmployee(employee);
+        return employee;
+    }
+
+    @PutMapping("/employees")
+    public Employee updateEmployee(@RequestBody Employee employee) {
+        employeeService.saveOrUpdateEmployee(employee);
+        return employee;
+    }
+
+    @DeleteMapping("/employees/{id}")
+    public String deleteEmployee(@PathVariable int id){
+        if (getEmployee(id) != null) {
+            employeeService.deleteEmployee(id);
+        }
+        return "Employee with id " + id + " was erased";
+    }
 
 }
