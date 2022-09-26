@@ -2,9 +2,18 @@ package com.yojik.learn.spring_boot_rest.controller;
 
 import com.yojik.learn.spring_boot_rest.entity.Employee;
 import com.yojik.learn.spring_boot_rest.service.EmployeeService;
+
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.codec.json.Jackson2JsonDecoder;
+import org.springframework.http.codec.json.Jackson2JsonEncoder;
+import org.springframework.http.codec.json.Jackson2SmileEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 @RestController
@@ -18,6 +27,16 @@ public class MyRestController {
     public List<Employee> showAllEmployees() {
         List<Employee> allEmployees = employeeService.getAllEmployees();
         return allEmployees;
+    }
+
+
+
+    @GetMapping(value = "/download",
+            produces = MediaType.TEXT_PLAIN_VALUE)
+    public @ResponseBody byte[] downloadAllEmployees() throws IOException {
+        List<Employee> allEmployees = employeeService.getAllEmployees();
+        InputStream in = new FileInputStream("sometext.txt");
+        return in.readAllBytes();
     }
 
     @GetMapping("/employees/{id}")
