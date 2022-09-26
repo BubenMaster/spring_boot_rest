@@ -1,7 +1,5 @@
 package com.yojik.learn.spring_boot_rest.servlet.from_table;
 
-import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.VaadinServlet;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.annotation.WebServlet;
